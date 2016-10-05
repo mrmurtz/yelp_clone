@@ -51,6 +51,6 @@ end
   gem 'rspec-rails'
   gem 'rspec-collection_matchers'
   gem 'capybara'
-  gem 'dotenv-rails'
+
 
 end
