@@ -8,18 +8,16 @@ class RestaurantsController < ApplicationController
 
   def new
     @restaurant = Restaurant.new
-
   end
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.user = current_user
-    if @restaurant.save
-
-      redirect_to '/restaurants'
-    else
-      render 'new'
-    end
+      if @restaurant.save
+        redirect_to '/restaurants'
+      else
+        render 'new'
+      end
   end
 
   def show

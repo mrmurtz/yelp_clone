@@ -2,15 +2,6 @@ require 'rails_helper'
 
 feature 'restaurants' do
 
-  # before do
-  #   visit('/')
-  #   click_link('Sign up')
-  #   fill_in('Email', with: 'test@example.com')
-  #   fill_in('Password', with: 'testtest')
-  #   fill_in('Password confirmation', with: 'testtest')
-  #   click_button('Sign up')
-  # end
-
   context 'no restaurants have been added' do
     scenario 'should display a prompt to add a restaurant' do
       sign_up_user1
@@ -41,28 +32,23 @@ feature 'restaurants' do
     fill_in 'Name', with: 'KFC'
     click_button 'Create Restaurant'
     expect(page).to have_content 'KFC'
-    expect(current_path).to eq '/restaurants'
   end
 end
 
 context 'viewing restaurants' do
 
-  # let!(:kfc){ Restaurant.create(name:'KFC') }
+  let!(:kfc){Restaurant.create(name:'KFC')}
 
-  # scenario 'lets a user view a restaurant' do
-  #   sign_up_user1
-  #   add_restaurant_kfc
-  #  visit '/restaurants'
-  #  click_link 'KFC'
-  #  expect(page).to have_content 'KFC'
-  #  expect(current_path).to eq "/restaurants/#{.id}"
-  # end
+  scenario 'lets a user view a restaurant' do
+   visit '/restaurants'
+   click_link 'KFC'
+   expect(page).to have_content 'KFC'
+   expect(current_path).to eq "/restaurants/#{kfc.id}"
+  end
 
 end
 
 context 'editing restaurants' do
-
-  # before { Restaurant.create name: 'KFC', description: 'Deep fried goodness' }
 
   scenario 'let a user edit a restaurant' do
     sign_up_user1
