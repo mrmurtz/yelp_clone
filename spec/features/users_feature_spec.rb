@@ -49,7 +49,7 @@ feature "User can sign in and out" do
       fill_in('Thoughts', with: 'cant see this')
       select '1', from: 'Rating'
       click_button('Leave Review')
-      expect(page).not_to have_content('cant see this')
+      expect(page).to have_content('You have already reviewed this restaurant')
     end
 
     it 'can delete own reviews' do
