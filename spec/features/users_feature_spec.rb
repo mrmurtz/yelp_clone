@@ -34,6 +34,29 @@ feature "User can sign in and out" do
       expect(page).not_to have_link('Sign in')
       expect(page).not_to have_link('Sign up')
     end
+
+    it 'can only edit/delete restaurants which theyve created' do
+      add_restaurant_kfc
+      click_link('Sign out')
+      sign_up_user2
+      click_link('Delete KFC')
+      expect(page).to have_content('error')
+    end
+
+    it 'can only leave one review per restaurant' do
+      add_restaurant_kfc
+      review_kfc
+      review_kfc
+      expect(page).to have_content('error')
+    end
+
+    it 'can delete own reviews' do
+      add_restaurant_kfc
+      review_kfc
+      delete_kfc
+      expect(page).to have_content('Restaurant deleted successfully')
+    end
+
   end
 
   context "user is not signed in" do
