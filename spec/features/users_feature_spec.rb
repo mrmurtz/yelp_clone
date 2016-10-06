@@ -39,15 +39,17 @@ feature "User can sign in and out" do
       add_restaurant_kfc
       click_link('Sign out')
       sign_up_user2
-      click_link('Delete KFC')
-      expect(page).to have_content('error')
+      expect(page).not_to have_content('Delete KFC')
     end
 
     it 'can only leave one review per restaurant' do
       add_restaurant_kfc
       review_kfc
-      review_kfc
-      expect(page).to have_content('error')
+      click_link('Review KFC')
+      fill_in('Thoughts', with: 'cant see this')
+      select '1', from: 'Rating'
+      click_button('Leave Review')
+      expect(page).not_to have_content('cant see this')
     end
 
     it 'can delete own reviews' do
