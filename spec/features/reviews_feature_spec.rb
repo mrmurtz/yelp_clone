@@ -15,4 +15,13 @@ feature 'reviewing' do
     expect(page).to have_content('so so')
   end
 
+  scenario "displays ave rating for kfc of 2" do
+    sign_up_user1
+    leave_review("Not bad", 1)
+    click_link "Sign out"
+    sign_up_user2
+    leave_review("Good", 5)
+    expect(page).to have_content("Average rating: 3")
+  end
+
 end

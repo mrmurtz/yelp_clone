@@ -5,6 +5,8 @@
     <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
 
     <h3><%= restaurant.description %></h3>
+    <h3>Average rating: <%= restaurant.average_rating.to_i %></h3>
+
 
     <br>
 
